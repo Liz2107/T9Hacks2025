@@ -1,0 +1,13 @@
+print("Population:")
+pop = int(input())
+print("Percentage of Population Belonging to Black Demographic:")
+prop = float(input())
+print("Hospitals:")
+hospitals = int(input())
+hpc = hospitals/pop*100000
+predicted = 16.26493-.03175*(prop)-.1024*(hpc)
+b_predicted = 13.97942+.13985*(prop)-.12672*(hpc)
+all_w_predicted = 16.26493-.03175*(100)-.1024*(hpc)
+print(f"For every 100 people admitted in your county, {b_predicted:.2f} will have to be readmitted unexpectedly in the next 30-days.")
+print(f"A county with a similar ethnically white population would only expect to see {predicted:.2f}.")
+print(f"A similar county with an entirely white population would only expect to see {all_w_predicted:.2f}.")

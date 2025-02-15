@@ -17,18 +17,22 @@ library(GGally)
 library(ggthemes)
 
 # load the reamissions data from github directly
-readmissions <- readr::read_csv("C:\\Users\\amsba\\OneDrive\\Documents\\Data\\Hackathon021425\\ReadmissionKaggle\\primary.csv")
+df <- readr::read_csv("dataframe.csv")
 ```
 
 Now plot it
 
 ```{r}
-gf_point(ReadmitsProp~PCPI,data=readmissions)
-myModel<-lm(ReadmitsProp~PCPI,data=readmissions)
+myModel<-lm(ReadmissionRate~PercentBlack,data=df)
+gf_point(ReadmissionRate~PercentBlack,data=df,family='serif') %>% gf_lm() +
+    theme(text=element_text(family="serif"))+
+    labs(title="2018 California County Readmission Rates as explained by Black Demographic Percentage")
 summary(myModel)
+
 ```
 SOme cool plots
 ```{r}
-ggpairs(readmissions,cardinality_threshold=58)
+drops<-c("Year","County","ICD","FIPS")
+ggpairs(df[ , !(names(df) %in% drops)])
 ```
 
