@@ -1,0 +1,34 @@
+```{r, echo = F, include = F, warnings = F}
+
+# clear your workspace
+rm(list = ls()) 
+
+# make it be a default to not include the code, only the output, when you knit this document
+knitr::opts_chunk$set(echo = F)  
+
+# load the librarys
+library(Stat2Data)
+library(tidyverse)
+library(mosaic)
+library(ggformula)
+library(tinytex)
+library(Lock5Data)
+library(GGally)
+library(ggthemes)
+
+# load the reamissions data from github directly
+readmissions <- readr::read_csv("C:\\Users\\amsba\\OneDrive\\Documents\\Data\\Hackathon021425\\ReadmissionKaggle\\primary.csv")
+```
+
+Now plot it
+
+```{r}
+gf_point(ReadmitsProp~PCPI,data=readmissions)
+myModel<-lm(ReadmitsProp~PCPI,data=readmissions)
+summary(myModel)
+```
+SOme cool plots
+```{r}
+ggpairs(readmissions,cardinality_threshold=58)
+```
+
